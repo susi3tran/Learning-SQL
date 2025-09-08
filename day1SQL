@@ -1,0 +1,152 @@
+--selecting all rows and columns
+SELECT *
+FROM oliveoil.sales;
+
+--selecting specific columns
+SELECT order_num,
+       emp_name,
+       prod_category,
+       order_total
+FROM oliveoil.sales;
+
+
+--LIMIT: limiting the output to 10 rows
+SELECT order_num,
+       emp_name,
+       prod_category,
+       order_total
+FROM oliveoil.sales
+LIMIT 10;
+
+
+--selecting one column
+SELECT prod_category
+FROM oliveoil.sales;
+
+
+--DISTINCT: selecting unique values from one column
+SELECT DISTINCT prod_category
+FROM oliveoil.sales;
+
+--ORDER BY: sorting by order total (default = ascending (ASC))
+SELECT order_num,
+       emp_name,
+       prod_category,
+       order_total
+FROM oliveoil.sales
+ORDER BY order_total DESC;
+
+--ORDER BY: sorting by product category and other total descending
+SELECT order_num,
+       emp_name,
+       prod_category,
+       order_total
+FROM oliveoil.sales
+ORDER BY prod_category ASC,
+         order_total DESC;
+         
+--top 5 overall orders, that includes order number, employee name, product category, and order total
+SELECT order_num,
+       emp_name,
+       prod_category,
+       order_total
+FROM oliveoil.sales
+ORDER BY order_total DESC
+LIMIT 5;
+
+--WHERE: filtering data with the '=' sign
+SELECT order_num,
+       emp_name,
+       prod_category,
+       order_total
+FROM oliveoil.sales
+WHERE prod_category = 'Bath Products'
+ORDER BY order_total DESC
+LIMIT 5;
+
+--WHERE: filtering data with the IN operator
+SELECT order_num,
+       emp_name,
+       prod_category,
+       order_total
+FROM oliveoil.sales
+WHERE prod_category IN ('Bath Products', 'Gift Basket')
+ORDER BY order_total DESC
+LIMIT 5;
+
+--WHERE: filtering data with the '!=' sign, this is excluding 1 category
+SELECT order_num,
+       emp_name,
+       prod_category,
+       order_total
+FROM oliveoil.sales
+WHERE prod_category != 'Olive Oil'
+ORDER BY order_total DESC
+LIMIT 5;
+
+--WHERE: filtering data with the NOT IN operator
+SELECT order_num,
+       emp_name,
+       prod_category,
+       order_total
+FROM oliveoil.sales
+WHERE prod_category NOT IN ('Olive Oil', 'Gift Basket')
+ORDER BY order_total DESC
+LIMIT 5;
+
+--WHERE: filtering data with the AND operator, part 1
+SELECT order_num,
+       emp_name,
+       prod_category,
+       order_total
+FROM oliveoil.sales
+WHERE prod_category = 'Bath Products'
+  AND emp_name = 'Clement Carry'
+ORDER BY order_total DESC;
+
+--WHERE: filtering data with the AND operator, part 2
+SELECT order_num,
+       emp_name,
+       prod_category,
+       quantity,
+       order_total
+FROM oliveoil.sales
+WHERE prod_category = 'Bath Products'
+  AND emp_name = 'Clement Carry'
+  AND quantity > 3
+ORDER BY order_total DESC;
+
+--WHERE: filtering data with the BETWEEN operator
+SELECT order_num,
+       emp_name,
+       prod_category,
+       quantity,
+       order_total
+FROM oliveoil.sales
+WHERE prod_category = 'Bath Products'
+  AND emp_name = 'Clement Carry'
+  AND quantity BETWEEN 2 AND 4
+ORDER BY order_total DESC;
+
+--WHERE: filtering data with the OR operator, part 1
+SELECT order_num,
+       emp_name,
+       prod_category,
+       quantity,
+       order_total
+FROM oliveoil.sales
+WHERE prod_category = 'Bath Products'
+   OR emp_name = 'Clement Carry'
+ORDER BY order_total DESC;
+
+--WHERE: filtering data with the OR operator, part 2
+SELECT order_num,
+       emp_name,
+       prod_category,
+       quantity,
+       order_total
+FROM oliveoil.sales
+WHERE (prod_category = 'Bath Products'
+   OR emp_name = 'Clement Carry')
+   AND quantity > 5
+ORDER BY order_total DESC;

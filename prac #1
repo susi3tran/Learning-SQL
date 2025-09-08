@@ -1,0 +1,10 @@
+--Select the top 10 business orders in the Carolinas, customer state North Carolina and South Carolina, in this table. Order from largest to smallest order total.
+SELECT order_num,
+    cust_state,
+    order_type,
+    order_total
+FROM oliveoil.sales
+WHERE cust_state IN ('North Carolina', 'South Carolina')
+  AND cust_type = 'Business'
+ORDER BY order_total DESC
+LIMIT 10;

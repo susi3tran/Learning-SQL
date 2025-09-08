@@ -149,4 +149,5 @@ FROM oliveoil.sales
 WHERE (prod_category = 'Bath Products'
    OR emp_name = 'Clement Carry')
    AND quantity > 5
+
 ORDER BY order_total DESC;
